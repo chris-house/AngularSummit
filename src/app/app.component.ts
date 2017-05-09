@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Http} from '@angular/http';
+
+import { PersonService } from './person.service';
 import 'rxjs/Rx'; // For methods for Observables
 @Component({
   selector: 'app-root',
@@ -16,22 +17,11 @@ export class AppComponent implements OnInit {
     id: 0
   };
 
-  server = 'http://localhost:8081';
   people = [];
+  predicate = '';
+  reverse: Boolean = true;
 
-  constructor(private http: Http) {
-  }
-
-  checkSearch(term) {
-    if (term.length < 1) {
-      this.people = [];
-    } else {
-      this.http.get(this.server + '/people/' + term)
-        .map((res) => res.json())
-        .subscribe((response) => {
-          this.people = response.people;
-        });
-    }
+  constructor( private personService: PersonService) {
   }
 
   ngOnInit() {
@@ -51,4 +41,22 @@ export class AppComponent implements OnInit {
 
   }
 
+checkSearch(term) {
+ if (term.length < 2) {
+   this.people = [];
+ } else {
+   this.personService.getPeople(term)
+     .subscribe(people => this.people = people);
+ }
+}
+
+  toggleSortOrder(column) {
+    if (column !== this.predicate) {
+      this.predicate = column;
+      this.people.sort((itemOne, itemTwo) =>
+        (itemOne[column] < itemTwo[column]) ? -1 :
+          (itemOne[column] > itemTwo[column]) ? 1 : 0
+      );
+    }
+  }
 }

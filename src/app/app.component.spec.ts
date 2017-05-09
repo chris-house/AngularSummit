@@ -2,16 +2,22 @@ import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import {FormControl, FormGroup, FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
+import { GenderPipe } from './gender.pipe';
+import { PersonService } from './person.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        GenderPipe
       ],
-      imports:[
+      imports: [
         FormsModule,
         HttpModule
+      ],
+      providers: [
+        PersonService
       ]
     }).compileComponents();
   }));

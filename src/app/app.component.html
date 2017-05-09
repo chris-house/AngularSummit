@@ -1,18 +1,18 @@
-<h1>
+<div id='testStuff' [hidden]='1===1'><h1>
   {{title}}
 </h1>
 <h4 id='name' class='myname'>{{obj.name}}</h4>
 <input id='inputName' [(ngModel)]="obj.name" />
 <pre>{{obj | json}}</pre>
-
+</div>
 
 
 <div id="search">
   <div class="row">
-    <div class="col-md-6">
-      <form id="search-form">
+    <div class="col-md-12">
+      <form id="search-form" style="text-align:center;">
         <span class="glyphicon glyphicon-search"></span>
-        <input type="text" size="50" class="form-control" id="search-input"
+        <input type="text" size="50" class="form-control" id="search-input" autocomplete="off"
                #searchBox
                placeholder="Enter the first part of a last name"
                (keyup)=checkSearch(searchBox.value)>
@@ -23,7 +23,7 @@
 
   <div id="search-results">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12" style="text-align:center;">
         <div *ngIf="people.length === 0">No search results.</div>
         <div *ngIf="people.length > 0">
           {{ people.length }} matching people
@@ -36,10 +36,15 @@
         <table class="table" *ngIf="people.length > 0">
           <thead>
           <tr>
-            <th>Name</th>
-            <th>SSN</th>
-            <th>Birth Date</th>
-            <th>Gender</th>
+              <th>
+                <a (click)="toggleSortOrder('first')">Name
+                  <span *ngIf="!reverse && (predicate === 'first')">&#x25b2;</span>
+                  <span *ngIf="reverse && (predicate === 'first')">&#x25bc;</span>
+                </a>
+              </th>
+              <th><a (click)="toggleSortOrder('ssn')">SSN</a></th>
+              <th><a (click)="toggleSortOrder('birthDate')">Birth Date</a></th>
+              <th><a (click)="toggleSortOrder('gender')">Gender</a></th>
           </tr>
           </thead>
 
@@ -50,8 +55,8 @@
                 {{i+1}}. {{person?.first}} {{person.last}}
             </td>
             <td class="SSN">{{person.ssn}}</td>
-            <td class="DOB">{{person.birthDate}}</td>
-            <td class="gender">{{person.gender}}</td>
+            <td class="DOB">{{person.birthDate | date:medium}}</td>
+            <td class="gender">{{person.gender | gender}}</td>
           </tr>
           </tbody>
         </table>
