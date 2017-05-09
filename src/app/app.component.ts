@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Http} from '@angular/http';
+import 'rxjs/Rx'; // For methods for Observables
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +15,25 @@ export class AppComponent implements OnInit {
     name: 'Chris',
     id: 0
   };
+
+  server = 'http://localhost:8081';
+  people = [];
+
+  constructor(private https: Http) {
+  }
+
+  checkSearch(term) {
+    if (term.length < 2) {
+      this.people = [];
+    } else {
+      this.https.get(this.server + '/people/' + term)
+        .map((res) => res.json())
+        .subscribe((response) => {
+          this.people = response.people;
+        });
+    }
+  }
+
   ngOnInit() {
     let i: any = 0;
     for (i = 0; i < 10; i++) {

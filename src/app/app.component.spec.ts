@@ -1,6 +1,7 @@
 import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import {FormControl, FormGroup, FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
+import { HttpModule } from '@angular/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports:[
-        FormsModule
+        FormsModule,
+        HttpModule
       ]
     }).compileComponents();
   }));
