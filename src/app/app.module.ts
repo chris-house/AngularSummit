@@ -6,18 +6,21 @@ import { HttpModule } from '@angular/http';
 import { PersonService } from './person.service';
 import { AppComponent } from './app.component';
 import { GenderPipe } from './gender.pipe';
-
+import { SearchComponent } from './search/search.component';
+import { PeopleProjectRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    GenderPipe
+    GenderPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpModule
+    HttpModule,
+    PeopleProjectRoutingModule
   ],
   providers: [PersonService],
   bootstrap: [AppComponent]
