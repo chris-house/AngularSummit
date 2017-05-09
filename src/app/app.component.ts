@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-
 import { PersonService } from './person.service';
 import 'rxjs/Rx'; // For methods for Observables
+import { Person } from './models';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     id: 0
   };
 
-  people = [];
+  people: Person[] = new Array<Person>();
   predicate = '';
   reverse: Boolean = true;
 
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
   }
 
 checkSearch(term) {
- if (term.length < 2) {
+ if (term.length < 1) {
    this.people = [];
  } else {
    this.personService.getPeople(term)
@@ -57,6 +57,14 @@ checkSearch(term) {
         (itemOne[column] < itemTwo[column]) ? -1 :
           (itemOne[column] > itemTwo[column]) ? 1 : 0
       );
+     } else {
+        this.people.reverse();
+        this.reverse = !this.reverse;
+    }
+  }
+  arrow(column: string) {
+    if (this.predicate === column) {
+      return this.reverse ? '▼' : '▲';
     }
   }
 }

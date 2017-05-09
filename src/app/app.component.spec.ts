@@ -51,7 +51,7 @@ describe('AppComponent', () => {
     // by class
     expect(compiled.querySelector('.myname').textContent).toContain('Chris');
 
-    tick();
+    tick(); // simulate after init
     expect(compiled.querySelector('#inputName').value).toContain('Chris');
   }));
 });

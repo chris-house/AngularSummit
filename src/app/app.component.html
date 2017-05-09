@@ -38,13 +38,24 @@
           <tr>
               <th>
                 <a (click)="toggleSortOrder('first')">Name
-                  <span *ngIf="!reverse && (predicate === 'first')">&#x25b2;</span>
-                  <span *ngIf="reverse && (predicate === 'first')">&#x25bc;</span>
+                  <span>{{arrow('first')}}</span>
                 </a>
               </th>
-              <th><a (click)="toggleSortOrder('ssn')">SSN</a></th>
-              <th><a (click)="toggleSortOrder('birthDate')">Birth Date</a></th>
-              <th><a (click)="toggleSortOrder('gender')">Gender</a></th>
+              <th>
+                <a (click)="toggleSortOrder('ssn')">SSN
+                  <span>{{arrow('ssn')}}</span>
+                </a>
+              </th>
+              <th>
+                <a (click)="toggleSortOrder('birthDate')">Birth Date
+                  <span>{{arrow('birthDate')}}</span>
+                </a>
+              </th>
+              <th>
+                <a (click)="toggleSortOrder('gender')">Gender
+                  <span>{{arrow('gender')}}</span>
+                </a>
+              </th>
           </tr>
           </thead>
 
