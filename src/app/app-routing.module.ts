@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search/search.component';
-// import { ShowComponent } from './show/show.component';
+import { ShowComponent } from './show/show.component';
 const routes: Routes = [
-// {path: 'show/:id', component: ShowComponent},
+ {path: 'show/:id', component: ShowComponent},
 {path: '', redirectTo: 'search', pathMatch: 'full'},
  {path: 'search', component: SearchComponent}
 ];

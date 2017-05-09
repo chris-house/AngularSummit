@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { GenderPipe } from './gender.pipe';
 import { SearchComponent } from './search/search.component';
 import { PeopleProjectRoutingModule } from './app-routing.module';
+import { ShowComponent } from './show/show.component';
 @NgModule({
   declarations: [
     AppComponent,
     GenderPipe,
-    SearchComponent
+    SearchComponent,
+    ShowComponent
   ],
   imports: [
     BrowserModule,

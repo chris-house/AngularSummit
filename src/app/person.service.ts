@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class PersonService {
@@ -16,5 +17,11 @@ export class PersonService {
      });
      return response.people;
    });
+}
+
+  getPerson(id: number): Observable<any> {
+return this.http.get(this.server + '/person/' + id)
+ .map((res) => res.json())
+ .map(({person}) => person); // Destructuring!!!
 }
 }
