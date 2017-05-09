@@ -1,5 +1,6 @@
 <h1>
   {{title}}
 </h1>
-<h4 id='name' class='myname'>{{name}}</h4>
+<h4 id='name' class='myname'>{{obj.name}}</h4>
+<input id='inputName' [(ngModel)]="obj.name" />
 <pre>{{obj | json}}</pre>

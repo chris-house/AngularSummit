@@ -1,5 +1,5 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import {FormControl, FormGroup, FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -8,6 +8,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports:[
+        FormsModule
+      ]
     }).compileComponents();
   }));
 
@@ -30,7 +33,7 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Hello Angular!');
   }));
 
-  it('should render name in a h4 tag', async(() => {
+  it('should render name in a h4 tag', fakeAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
@@ -39,5 +42,8 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('#name').textContent).toContain('Chris');
     // by class
     expect(compiled.querySelector('.myname').textContent).toContain('Chris');
+
+    tick();
+    expect(compiled.querySelector('#inputName').value).toContain('Chris');
   }));
 });
