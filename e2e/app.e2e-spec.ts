@@ -7,8 +7,8 @@ describe('angular-summit App', () => {
     page = new AngularSummitPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Hello', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Hello Angular!');
   });
 });
