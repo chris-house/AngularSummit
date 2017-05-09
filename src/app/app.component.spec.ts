@@ -29,4 +29,15 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Hello Angular!');
   }));
+
+  it('should render name in a h4 tag', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h4').textContent).toContain('Chris');
+    // by name
+    expect(compiled.querySelector('#name').textContent).toContain('Chris');
+    // by class
+    expect(compiled.querySelector('.myname').textContent).toContain('Chris');
+  }));
 });

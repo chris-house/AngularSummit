@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Hello Angular!';
+  name: String = '';
   obj: any = {
     type: 'Identifier',
     name: 'Chris',
@@ -22,8 +23,10 @@ export class AppComponent implements OnInit {
 
 
     // destructoring
+    // zndg.tl/typescriptes6
     const {type, name} = this.obj;
     console.log(type, name);
+    this.name = name;
 
   }
 
