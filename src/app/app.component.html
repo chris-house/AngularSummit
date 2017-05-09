@@ -14,7 +14,8 @@
         <span class="glyphicon glyphicon-search"></span>
         <input type="text" size="50" class="form-control" id="search-input"
                #searchBox
-               placeholder="Enter the first part of a last name">
+               placeholder="Enter the first part of a last name"
+               (keyup)=checkSearch(searchBox.value)>
         <button (click)="checkSearch(searchBox.value)" class="btn btn-default">Search</button>
       </form>
     </div>

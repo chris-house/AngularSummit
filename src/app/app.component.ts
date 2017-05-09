@@ -19,14 +19,14 @@ export class AppComponent implements OnInit {
   server = 'http://localhost:8081';
   people = [];
 
-  constructor(private https: Http) {
+  constructor(private http: Http) {
   }
 
   checkSearch(term) {
-    if (term.length < 2) {
+    if (term.length < 1) {
       this.people = [];
     } else {
-      this.https.get(this.server + '/people/' + term)
+      this.http.get(this.server + '/people/' + term)
         .map((res) => res.json())
         .subscribe((response) => {
           this.people = response.people;
