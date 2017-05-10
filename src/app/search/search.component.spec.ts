@@ -34,7 +34,12 @@ describe('SearchComponent', () => {
   it('Should test Person Service',
     inject([PersonService], (personService) => {
     expect(personService).toBeDefined();
-    personService.getPeople('t')
-      .subscribe(people =>  expect(people.length).toBeGreaterThanOrEqual(2));
+    personService.getPeople('test')
+      .subscribe(people => {
+        expect(people.length).toBeGreaterThanOrEqual(2);
+        expect(people).toContain(jasmine.objectContaining({
+          last: 'Testerman'
+        }));
+      });
   }));
 });
