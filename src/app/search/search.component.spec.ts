@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search.component';
 import { GenderPipe } from '../gender.pipe';
@@ -21,6 +21,7 @@ describe('SearchComponent', () => {
   }));
 
   beforeEach(() => {
+
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -29,4 +30,11 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Should test Person Service',
+    inject([PersonService], (personService) => {
+    expect(personService).toBeDefined();
+    personService.getPeople('t')
+      .subscribe(people =>  expect(people.length).toBeGreaterThanOrEqual(2));
+  }));
 });
