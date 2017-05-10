@@ -4,7 +4,8 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { GenderPipe } from './gender.pipe';
 import { PersonService } from './person.service';
-
+import { Routes, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         FormsModule,
-        HttpModule
+        HttpModule,
+        RouterTestingModule
       ],
       providers: [
         PersonService
