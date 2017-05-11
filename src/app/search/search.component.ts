@@ -47,4 +47,13 @@ export class SearchComponent implements OnInit {
       return this.reverse ? '▼' : '▲';
     }
   }
+
+  return1(): Number {
+    const bReturn: Number = 999;
+    return bReturn;
+  }
+
+  add(num1, num2): Number {
+    return (num1 + num2);
+  }
 }

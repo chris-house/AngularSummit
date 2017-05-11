@@ -31,15 +31,25 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should add two numbers', () => {
+    expect(component.add(1, 2)).toBe(3);
+    expect(component.add(0, 0)).not.toBeUndefined();
+  });
+
   it('Should test Person Service',
     inject([PersonService], (personService) => {
     expect(personService).toBeDefined();
     personService.getPeople('test')
       .subscribe(people => {
-        expect(people.length).toBeGreaterThanOrEqual(2);
+        expect(people.length).toBe(2);
         expect(people).toContain(jasmine.objectContaining({
           last: 'Testerman'
         }));
       });
+
+      // calling a function that returns a specific number
+      expect(component.return1()).toBe(999);
+      expect(component.return1()).toBeGreaterThan(-999);
   }));
+
 });
