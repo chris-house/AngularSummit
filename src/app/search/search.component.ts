@@ -14,20 +14,24 @@ export class SearchComponent implements OnInit {
   people = [];
   predicate = '';
   reverse: Boolean = true;
-
+  testString: String = 'test';
   constructor( private personService: PersonService) {
   }
 
   ngOnInit() {
   }
 
-  checkSearch(term) {
-  if (term.length < 1) {
-    this.people = [];
-  } else {
-    this.personService.getPeople(term)
-      .subscribe(people => this.people = people);
+  changeString(s: string) {
+    this.testString = s;
   }
+
+  checkSearch(term) {
+    if (term.length < 1) {
+      this.people = [];
+    } else {
+      this.personService.getPeople(term)
+        .subscribe(people => this.people = people);
+    }
   }
 
   toggleSortOrder(column) {
@@ -55,5 +59,9 @@ export class SearchComponent implements OnInit {
 
   add(num1, num2): Number {
     return (num1 + num2);
+  }
+
+  divide(num1, num2): Number {
+    return (num1 / num2);
   }
 }

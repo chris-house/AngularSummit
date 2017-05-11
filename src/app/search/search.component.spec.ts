@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, ComponentFixtureAutoDetect, fakeAsync, tick } from '@angular/core/testing';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchComponent } from './search.component';
 import { GenderPipe } from '../gender.pipe';
@@ -15,7 +15,9 @@ describe('SearchComponent', () => {
         RouterModule,
         HttpModule
       ],
-      providers: [PersonService]
+      providers: [ PersonService,
+       { provide: ComponentFixtureAutoDetect, useValue: true }
+      ]
     })
     .compileComponents();
   }));
@@ -36,6 +38,12 @@ describe('SearchComponent', () => {
     expect(component.add(0, 0)).not.toBeUndefined();
   });
 
+  it('should divide two numbers', () => {
+    expect(component.divide(1, 2)).toBe(0.5);
+    // expect(component.divide(0, 0)).toBeNaN();
+
+  });
+
   it('Should test Person Service',
     inject([PersonService], (personService) => {
     expect(personService).toBeDefined();
@@ -50,6 +58,12 @@ describe('SearchComponent', () => {
       // calling a function that returns a specific number
       expect(component.return1()).toBe(999);
       expect(component.return1()).toBeGreaterThan(-999);
+
+
   }));
+  it('test string change', () => {
+    component.changeString('NewString');
+    expect(component.testString).toBe('NewString');
+  });
 
 });
